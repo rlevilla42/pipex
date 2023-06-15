@@ -13,10 +13,10 @@ char	*get_path(char *full_cmd, pipe_t *pipex)
 		final_path = ft_strjoin(pipex->path_split[j], full_cmd);
 		if (final_path == NULL)
 			write_error("Path_final is DEAD ??\n");
-		if (access(final_path, X_OK) == 0)
-			break ;
 		else
 			free(pipex->path_split[j]);
+		if (access(final_path, X_OK) == 0)
+			break ;
 		j++;
 	}
 	free(pipex->path_split);
