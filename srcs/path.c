@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 15:06:20 by rlevilla          #+#    #+#             */
+/*   Updated: 2023/06/16 18:19:49 by rlevilla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-char	*get_path(char *full_cmd, pipe_t *pipex)
+char	*get_path(char *full_cmd, t_pipe *pipex)
 {
 	int		i;
 	int		j;
@@ -23,7 +35,7 @@ char	*get_path(char *full_cmd, pipe_t *pipex)
 	return (final_path);
 }
 
-int	find_j_path(pipe_t *pipex, char **env)
+int	find_j_path(t_pipe *pipex, char **env)
 {
 	int	j;
 
@@ -38,14 +50,14 @@ int	find_j_path(pipe_t *pipex, char **env)
 	return (j);
 }
 
-void	turbo_exec(char **cmd, pipe_t *pipex, char **env)
+void	turbo_exec(char **cmd, t_pipe *pipex, char **env)
 {
 	int		i;
 	int		j;
 	char	*full_cmd;
 	char	*final_path;
 
-	j = find_j_path(pipex, env);;
+	j = find_j_path(pipex, env);
 	i = 0;
 	while (i < 6)
 	{

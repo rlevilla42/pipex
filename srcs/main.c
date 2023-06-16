@@ -1,19 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 15:06:20 by rlevilla          #+#    #+#             */
+/*   Updated: 2023/06/17 00:21:51 by rlevilla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	write_error(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write(2, &str[i], ft_strlen(str));
-		i++;
-	}
+	perror(str);
 	exit(1);
 }
 
-void	child_process(int *fd, pipe_t *pipex, char **argv, char **env)
+void	child_process(int *fd, t_pipe *pipex, char **argv, char **env)
 {
 	int		infile;
 	char	**cmd;
@@ -32,9 +37,9 @@ void	child_process(int *fd, pipe_t *pipex, char **argv, char **env)
 	turbo_exec(cmd, pipex, env);
 }
 
-void	parent_process(int *fd, pipe_t *pipex, char **argv, char **env)
+void	parent_process(int *fd, t_pipe *pipex, char **argv, char **env)
 {
-	int	outfile;
+	int		outfile;
 	char	**cmd;
 
 	close(fd[1]);
@@ -53,8 +58,8 @@ void	parent_process(int *fd, pipe_t *pipex, char **argv, char **env)
 
 int	main(int argc, char **argv, char **env)
 {
-	int	fd_pipe[2];
-	pipe_t	pipex;
+	int		fd_pipe[2];
+	t_pipe	pipex;
 
 	if (argc != 5)
 		write_error("Too much or too many arugmnts bro !\n");

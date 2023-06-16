@@ -1,4 +1,16 @@
-#ifndef	PIPEX_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlevilla <rlevilla@student.42lausanne.ch>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 15:06:20 by rlevilla          #+#    #+#             */
+/*   Updated: 2023/06/17 00:22:08 by rlevilla         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PIPEX_H
 # define PIPEX_H
 
 # include <unistd.h>
@@ -19,8 +31,9 @@ typedef struct pipe
 	int		*rt_pipe;
 	int		p_fork1;
 	int		p_fork2;
-}	pipe_t;
+}	t_pipe;
 
-void	turbo_exec(char **cmd, pipe_t *pipe, char **env);
+void	turbo_exec(char **cmd, t_pipe *pipe, char **env);
 void	write_error(char *str);
+void	error(char *msg);
 #endif
